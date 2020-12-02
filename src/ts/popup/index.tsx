@@ -7,6 +7,7 @@ import PopupApp from './containers/PopupApp';
 const store = new Store();
 
 store.ready().then(() => {
+	console.log("this being called ")
 	ReactDOM.render(
 		<Provider store={store}>
 			<PopupApp />

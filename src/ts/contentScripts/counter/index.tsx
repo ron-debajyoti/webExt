@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { Store } from 'webext-redux';
 import CounterApp from './containers/CounterApp';
 
-import { createDomAnchor } from '../../scripts/dom';
+// import { createDomAnchor } from '../../scripts/dom';
 
-createDomAnchor('counter-root');
+// createDomAnchor('counter-root');
 const store = new Store();
 
 store.ready().then(() => {
@@ -14,5 +14,5 @@ store.ready().then(() => {
 		<Provider store={store}>
 			<CounterApp />
 		</Provider>
-		, document.getElementById('counter-root'));
+		, document.getElementById('root'));
 });

@@ -1,6 +1,6 @@
 {
 	"name": "Web Extension Starter",
-	"author": "ymdevs",
+	"author": "rondebajyoti",
 	"version": "1.0.0",
 	"description": "A web browser extension starter - based on Typescript, React, Redux, Styled-Component, Webpack, and more. Runs on Chrome and Firefox.",
 	"icons": {
