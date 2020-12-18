@@ -8,6 +8,7 @@
 	},
 	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 	"permissions": [
+		"identity",
 		"activeTab",
 		"alarms",
 		"bookmarks",
@@ -29,6 +30,12 @@
 		"default_title": "Web Extension Starter",
 		"default_icon": "assets/icon-48.png",
 		"default_popup": "popup.html"
+	},
+	"browser_specific_settings": {
+		"gecko" : {
+			"id": "addon@example.com",
+			"strict_min_version": "53.0"
+		}
 	},
 	"options_ui": {
 		"page": "options.html",

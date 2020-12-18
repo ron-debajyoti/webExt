@@ -29,6 +29,7 @@ const cleanWebpackPlugin = nodeEnv === 'production' ? new CleanWebpackPlugin() :
 
 module.exports = {
 	watch: nodeEnv === 'watch',
+	target: 'web',
 	entry: {
 		background: path.join(sourceRootPath, 'ts', 'background', 'index.ts'),
 		options: path.join(sourceRootPath, 'ts', 'options', 'index.tsx'),
@@ -46,6 +47,9 @@ module.exports = {
 		rules: [
 			{ test: /\.(js|ts|tsx)?$/, loader: 'awesome-typescript-loader', exclude: /node_modules/ },
 		]
+	},
+	node: {
+		fs:'empty'
 	},
 	plugins: [
 		new CheckerPlugin(),
