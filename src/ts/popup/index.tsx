@@ -10,6 +10,7 @@ const Handler = (props: { theme: ThemeTypes }) => {
     const updateState = (state: boolean) => {
         setAuthState(state)
     }
+    console.log(authState)
     if (!authState) {
         return <SignIn update={updateState} theme={props.theme} />
     }
