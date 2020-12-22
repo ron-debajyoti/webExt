@@ -27,17 +27,16 @@ const Button = styled.button`
     border-radius: 20px;
 `
 
-interface ISignin {
+interface Props {
     update: (arg: boolean) => void
     theme: ThemeTypes
 }
 
-class Main extends React.Component<ISignin> {
+class Main extends React.Component<Props> {
     messageValidation = () => {
         chrome.runtime.sendMessage({ message: 'logout' }, (response) => {
             if (response.message === 'success') {
                 this.props.update(false)
-                window.close()
             }
         })
     }

@@ -17,11 +17,11 @@ export interface Endpoints {
 }
 
 export class Storage {
-    static set(key: string, value: any) {
+    static set(key: string, value: any): void {
         localStorage.setItem(key, JSON.stringify(value))
     }
 
-    static get(key: string) {
+    static get(key: string): string | undefined {
         let result
         const value = localStorage.getItem(key) ?? undefined
         try {

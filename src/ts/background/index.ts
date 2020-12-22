@@ -16,15 +16,22 @@ const createEndpoint = (point: Endpoints) => {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log(
-        sender.tab
-            ? 'from a content script:' + sender.tab.url
-            : 'from the extension'
-    )
-
     if (request.message === 'login') {
         if (userSignedIn) {
             console.log('The user is already signed in ')
+            console.log(
+                sender.tab
+                    ? 'from a content script:' + sender.tab.url
+                    : 'from the extension'
+            )
+
+            chrome.browserAction.setPopup(
+                { popup: '../../html/popup.html' },
+                () => {
+                    sendResponse({ message: 'success' })
+                }
+            )
+            return true
         } else {
             chrome.identity.launchWebAuthFlow(
                 {
@@ -49,6 +56,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                                 accessToken.indexOf('&')
                             )
                             points.accessToken = accessToken
+                            userSignedIn = true
                             chrome.browserAction.setPopup(
                                 { popup: '../../html/popup.html' },
                                 () => {
@@ -65,7 +73,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'logout') {
         userSignedIn = false
         chrome.browserAction.setPopup(
-            { popup: '../../html/options.html' },
+            { popup: '../../html/popup.html' },
             () => {
                 sendResponse({ message: 'success' })
             }

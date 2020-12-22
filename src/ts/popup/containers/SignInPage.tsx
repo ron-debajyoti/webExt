@@ -27,17 +27,16 @@ const Button = styled.button`
     border-radius: 20px;
 `
 
-interface IPopup {
+interface Props {
     update: (arg: boolean) => void
     theme: ThemeTypes
 }
 
-class SignIn extends React.Component<IPopup> {
+class SignIn extends React.Component<Props> {
     messageValidation = () => {
         chrome.runtime.sendMessage({ message: 'login' }, (response) => {
             if (response.message === 'success') {
                 this.props.update(true)
-                window.close()
             }
         })
     }
