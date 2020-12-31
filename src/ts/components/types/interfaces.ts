@@ -1,7 +1,9 @@
 export interface Token {
+    authStatus: boolean
     clientID: string | null
     accessToken: string | null
     expirationTime: number
+    tokenTimestamp: number
 }
 
 export interface Devices {
@@ -13,25 +15,24 @@ export interface Endpoints {
     redirectUri: string
     responseType: string
     scope: string
-    accessToken: string | null
 }
 
 export class Storage {
-    static set(key: string, value: any): void {
+    static set(key: string, value: Token): void {
         localStorage.setItem(key, JSON.stringify(value))
     }
 
-    static get(key: string): string | undefined {
+    static get(key: string): Token {
         let result
         const value = localStorage.getItem(key) ?? undefined
         try {
             if (value === undefined) {
-                result = undefined
+                result = {} as Token
             } else {
                 result = JSON.parse(value)
             }
         } catch {
-            result = undefined
+            result = {} as Token
         }
         return result
     }

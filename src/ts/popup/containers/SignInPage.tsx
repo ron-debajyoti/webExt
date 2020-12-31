@@ -33,7 +33,7 @@ interface Props {
 }
 
 class SignIn extends React.Component<Props> {
-    messageValidation = () => {
+    messageValidation = (): void => {
         chrome.runtime.sendMessage({ message: 'login' }, (response) => {
             if (response.message === 'success') {
                 this.props.update(true)
