@@ -41,7 +41,7 @@ class SignIn extends React.Component<Props> {
         })
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <ThemeProvider theme={themes[this.props.theme]}>
                 <React.Fragment>

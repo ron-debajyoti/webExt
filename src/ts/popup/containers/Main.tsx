@@ -33,7 +33,7 @@ interface Props {
 }
 
 class Main extends React.Component<Props> {
-    messageValidation = () => {
+    messageValidation = (): void => {
         chrome.runtime.sendMessage({ message: 'logout' }, (response) => {
             if (response.message === 'success') {
                 this.props.update(false)
@@ -41,7 +41,7 @@ class Main extends React.Component<Props> {
         })
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <ThemeProvider theme={themes[this.props.theme]}>
                 <React.Fragment>

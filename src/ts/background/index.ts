@@ -47,12 +47,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         // if the user is logged in
         if (userToken.authStatus) {
             console.log('The user is already signed in ')
-            chrome.browserAction.setPopup(
-                { popup: '../../html/popup.html' },
-                () => {
-                    sendResponse({ message: 'success' })
-                }
-            )
+            sendResponse({ message: 'success' })
             return true
         } else {
             // the user is not logged in, we are generating a new access token object
@@ -85,12 +80,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                             userToken.tokenTimestamp = Date.now()
 
                             Storage.set('tokenObject', userToken)
-                            chrome.browserAction.setPopup(
-                                { popup: '../../html/popup.html' },
-                                () => {
-                                    sendResponse({ message: 'success' })
-                                }
-                            )
+                            sendResponse({ message: 'success' })
                         }
                     }
                 }
@@ -101,12 +91,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'logout') {
         userToken = {} as Token
         Storage.set('tokenObject', userToken)
-        chrome.browserAction.setPopup(
-            { popup: '../../html/popup.html' },
-            () => {
-                sendResponse({ message: 'success' })
-            }
-        )
+        sendResponse({ message: 'success' })
         return true
     }
     console.log('done here')
