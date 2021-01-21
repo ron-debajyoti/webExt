@@ -1,5 +1,6 @@
 import endpoints from '../endpoints.config'
 import { Token, Endpoints, Storage } from '../components/types/interfaces'
+// import * as $ from 'cheerio'
 
 const points: Endpoints = {
     redirectUri: chrome.identity.getRedirectURL(),
@@ -35,6 +36,27 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             : 'from the extension'
     )
     console.log(userToken)
+
+    // message received from content script
+
+    if (sender.tab) {
+        console.log('this path is getting executed')
+        // window.onload = () => {
+        //     chrome.tabs.query(
+        //         {
+        //             active: true,
+        //             currentWindow: true,
+        //         },
+        //         (tabs) => {
+        //             console.log(tabs)
+        //             const items = document.getElementById('items')
+        //             console.log(items)
+        //         }
+        //     )
+        // }
+    }
+
+    ////////////////////////
     if (userToken) {
         if (!timestampChecker(userToken)) {
             userToken = {} as Token

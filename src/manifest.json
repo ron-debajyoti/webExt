@@ -39,8 +39,9 @@
 	},
 	"content_scripts": [
 		{
-			"js": ["counter.js"],
-			"matches": ["*://*/*"]
+			"js": ["scripts.js"],
+			"matches": ["*://*/*"],
+			"run_at": "document_end"
 		}
 	]
 }
